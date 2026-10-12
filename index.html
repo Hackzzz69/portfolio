@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="hackerzz69 — developer portfolio: game servers, Discord bots, and practical web tools.">
+<meta name="theme-color" content="#0b1220">
+<title>hackerzz69 — Developer</title>
+<style>
+  :root{
+    --bg:#0b1220; --bg2:#0e1628; --card:#141d33; --line:#243154;
+    --txt:#e8edf7; --dim:#93a0bd; --acc:#4da3ff; --good:#3ddc84; --warn:#ffb020;
+  }
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:var(--bg); color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;
+    line-height:1.6; }
+  a{ color:var(--acc); text-decoration:none; }
+  .wrap{ max-width:960px; margin:0 auto; padding:0 20px; }
+  /* nav */
+  nav{ position:sticky; top:0; z-index:20; background:rgba(11,18,32,.85);
+    backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; height:60px; }
+  .brand{ font-weight:800; font-size:17px; color:var(--txt); }
+  .brand span{ color:var(--acc); }
+  .navlinks{ display:flex; gap:22px; font-size:14px; }
+  .navlinks a{ color:var(--dim); transition:color .15s; }
+  .navlinks a:hover{ color:var(--txt); }
+  @media (max-width:640px){ .navlinks{ display:none; } }
+  /* hero */
+  .hero{ padding:88px 0 64px; position:relative; overflow:hidden; }
+  .hero::before{ content:""; position:absolute; inset:0;
+    background:radial-gradient(600px 300px at 20% 0%, rgba(77,163,255,.12), transparent 70%);
+    pointer-events:none; }
+  .eyebrow{ color:var(--acc); font-size:13px; font-weight:700; letter-spacing:2px;
+    text-transform:uppercase; margin-bottom:14px; }
+  h1{ font-size:clamp(38px,7vw,60px); margin:0 0 12px; letter-spacing:-1.5px; line-height:1.05; }
+  h1 .grad{ background:linear-gradient(100deg,var(--acc),var(--good));
+    -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .lede{ font-size:18px; color:var(--dim); max-width:600px; margin:0 0 28px; }
+  .cta{ display:flex; gap:12px; flex-wrap:wrap; }
+  .btn{ display:inline-block; padding:13px 26px; border-radius:12px; font-weight:700;
+    font-size:15px; transition:transform .12s ease, box-shadow .15s ease, background .15s; }
+  .btn:active{ transform:scale(.97); }
+  .btn.pri{ background:var(--acc); color:#06121f; box-shadow:0 6px 24px rgba(77,163,255,.35); }
+  .btn.pri:hover{ box-shadow:0 8px 30px rgba(77,163,255,.5); }
+  .btn.sec{ border:1px solid var(--line); color:var(--txt); background:var(--card); }
+  .btn.sec:hover{ border-color:var(--acc); }
+  .stats{ display:flex; gap:36px; margin-top:44px; flex-wrap:wrap; }
+  .stat .n{ font-size:28px; font-weight:800; font-variant-numeric:tabular-nums; }
+  .stat .l{ font-size:12px; color:var(--dim); }
+  /* sections */
+  section{ padding:56px 0; }
+  .kicker{ color:var(--acc); font-size:13px; font-weight:700; letter-spacing:2px;
+    text-transform:uppercase; margin-bottom:8px; }
+  h2{ font-size:30px; margin:0 0 8px; letter-spacing:-.5px; }
+  .secsub{ color:var(--dim); margin:0 0 28px; max-width:640px; }
+  /* project cards */
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:18px; }
+  .pcard{ background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:22px; display:flex; flex-direction:column; gap:10px;
+    transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
+  .pcard:hover{ transform:translateY(-4px); border-color:var(--acc);
+    box-shadow:0 14px 34px rgba(0,0,0,.45); }
+  .pcard h3{ margin:0; font-size:18px; }
+  .pcard p{ margin:0; font-size:14px; color:var(--dim); flex:1; }
+  .tags{ display:flex; gap:8px; flex-wrap:wrap; }
+  .tag{ font-size:11px; font-weight:700; color:var(--dim); background:var(--bg2);
+    border:1px solid var(--line); border-radius:20px; padding:3px 10px; }
+  .tag.live{ color:#06121f; background:var(--good); border-color:var(--good); }
+  .plinks{ display:flex; gap:16px; font-size:14px; font-weight:600; margin-top:4px; }
+  /* skills */
+  .skillgroup{ margin-bottom:22px; }
+  .skillgroup h4{ margin:0 0 10px; font-size:14px; color:var(--dim);
+    text-transform:uppercase; letter-spacing:1.5px; font-weight:700; }
+  .pills{ display:flex; gap:10px; flex-wrap:wrap; }
+  .pill{ background:var(--card); border:1px solid var(--line); border-radius:12px;
+    padding:9px 16px; font-size:14px; font-weight:600;
+    transition:border-color .15s, transform .12s; }
+  .pill:hover{ border-color:var(--acc); transform:translateY(-2px); }
+  /* about / contact */
+  .about p{ color:var(--dim); max-width:680px; font-size:16px; }
+  .about strong{ color:var(--txt); }
+  .contactbox{ background:var(--card); border:1px solid var(--line); border-radius:18px;
+    padding:40px 32px; text-align:center; }
+  .contactbox h2{ margin-bottom:10px; }
+  .contactbox p{ color:var(--dim); max-width:520px; margin:0 auto 24px; }
+  footer{ border-top:1px solid var(--line); padding:28px 0 40px; color:var(--dim);
+    font-size:13px; text-align:center; }
+  /* reveal on scroll */
+  .rv{ opacity:0; transform:translateY(16px); transition:opacity .5s ease, transform .5s ease; }
+  .rv.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{ animation:none !important; transition:none !important; }
+    html{ scroll-behavior:auto; } .rv{ opacity:1; transform:none; }
+  }
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="#top">hackerzz<span>69</span></a>
+  <div class="navlinks">
+    <a href="#projects">Projects</a><a href="#skills">Skills</a>
+    <a href="#about">About</a><a href="#contact">Contact</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <div class="eyebrow">Developer portfolio</div>
+  <h1>hackerzz69<br><span class="grad">I build things that work.</span></h1>
+  <p class="lede">Game servers, Discord bots, launchers, and practical web tools — from RuneScape private servers to a paycheck calculator verified to the penny against real pay stubs.</p>
+  <div class="cta">
+    <a class="btn pri" href="#projects">View projects</a>
+    <a class="btn sec" href="https://github.com/hackerzz69" target="_blank" rel="noopener">GitHub profile</a>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="n">30+</div><div class="l">public repositories</div></div>
+    <div class="stat"><div class="n">Java · Kotlin</div><div class="l">game servers &amp; launchers</div></div>
+    <div class="stat"><div class="n">JS · TS · PHP</div><div class="l">web apps, bots &amp; tools</div></div>
+  </div>
+</div></header>
+
+<section id="projects"><div class="wrap">
+  <div class="kicker">Selected work</div>
+  <h2>Projects</h2>
+  <p class="secsub">A few things I've built or am building. Everything below is real code in real repos.</p>
+  <div class="grid">
+
+    <div class="pcard rv">
+      <h3>Truck Paycheck Calculator</h3>
+      <p>Installable PWA that estimates a weekly truck paycheck to the penny — W-2 (15% + per-diem) vs 1099 (25%), any-two-of-three load rows, IRS withholding tables, annual projections.</p>
+      <div class="tags"><span class="tag">JavaScript</span><span class="tag">PWA</span><span class="tag live">● Live</span></div>
+      <div class="plinks">
+        <a href="https://hackzzz69.github.io/truck-paycheck-calculator/" target="_blank" rel="noopener">Open app →</a>
+        <a href="https://github.com/hackerzz69/truck-paycheck-calculator" target="_blank" rel="noopener">Repo →</a>
+      </div>
+    </div>
+
+    <div class="pcard rv">
+      <h3>Elysium RSPS</h3>
+      <p>RuneScape private server project — server, client, website, and highscores. The long-running build: game logic, content, and web presence.</p>
+      <div class="tags"><span class="tag">Java</span><span class="tag">CSS</span><span class="tag">Game server</span></div>
+      <div class="plinks">
+        <a href="https://github.com/hackerzz69/Elysium-Client" target="_blank" rel="noopener">Client repo →</a>
+        <a href="https://github.com/hackerzz69/ElvargSite" target="_blank" rel="noopener">Site repo →</a>
+      </div>
+    </div>
+
+    <div class="pcard rv">
+      <h3>Elder Launcher ecosystem</h3>
+      <p>Game launcher plus server and API backend — client distribution, updates, and services in Java with a Kotlin API layer.</p>
+      <div class="tags"><span class="tag">Java</span><span class="tag">Kotlin</span><span class="tag">Launcher</span></div>
+      <div class="plinks">
+        <a href="https://github.com/hackerzz69/ElderLauncher" target="_blank" rel="noopener">Launcher →</a>
+        <a href="https://github.com/hackerzz69/ElderAPI" target="_blank" rel="noopener">API →</a>
+      </div>
+    </div>
+
+    <div class="pcard rv">
+      <h3>Zen211</h3>
+      <p>Server, client, and API with a TypeScript core — another game-server stack exploring a typed codebase end to end.</p>
+      <div class="tags"><span class="tag">TypeScript</span><span class="tag">Java</span><span class="tag">Kotlin</span></div>
+      <div class="plinks">
+        <a href="https://github.com/hackerzz69/Zen211" target="_blank" rel="noopener">Repo →</a>
+        <a href="https://github.com/hackerzz69/zen-core" target="_blank" rel="noopener">Core →</a>
+      </div>
+    </div>
+
+    <div class="pcard rv">
+      <h3>Little Big Snake community tools</h3>
+      <p>Community monitor and Discord bot for the Little Big Snake community — tracking, alerts, and automation for players.</p>
+      <div class="tags"><span class="tag">HTML</span><span class="tag">Discord bot</span><span class="tag">Automation</span></div>
+      <div class="plinks">
+        <a href="https://github.com/hackerzz69" target="_blank" rel="noopener">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="pcard rv">
+      <h3>Vote platform</h3>
+      <p>Secure, modular PHP voting platform with user authentication and an admin panel.</p>
+      <div class="tags"><span class="tag">PHP</span><span class="tag">Auth</span></div>
+      <div class="plinks">
+        <a href="https://github.com/hackerzz69/vote" target="_blank" rel="noopener">Repo →</a>
+      </div>
+    </div>
+
+  </div>
+</div></section>
+
+<section id="skills"><div class="wrap">
+  <div class="kicker">Toolbox</div>
+  <h2>Skills</h2>
+  <p class="secsub">What I reach for, by area.</p>
+  <div class="skillgroup rv">
+    <h4>Languages</h4>
+    <div class="pills">
+      <span class="pill">Java</span><span class="pill">Kotlin</span><span class="pill">TypeScript</span>
+      <span class="pill">JavaScript</span><span class="pill">PHP</span><span class="pill">HTML/CSS</span>
+    </div>
+  </div>
+  <div class="skillgroup rv">
+    <h4>What I build</h4>
+    <div class="pills">
+      <span class="pill">RSPS development</span><span class="pill">Game launchers</span>
+      <span class="pill">Discord bots</span><span class="pill">Web apps &amp; PWAs</span>
+      <span class="pill">Community tooling</span><span class="pill">Automation</span>
+    </div>
+  </div>
+  <div class="skillgroup rv">
+    <h4>Infra &amp; platforms</h4>
+    <div class="pills">
+      <span class="pill">GitHub Pages</span><span class="pill">Supabase</span><span class="pill">Cloudflare</span>
+    </div>
+  </div>
+</div></section>
+
+<section id="about"><div class="wrap about">
+  <div class="kicker">About</div>
+  <h2>Driver by day, builder by night</h2>
+  <p>By day I haul freight across the country. By night I build — <strong>game servers</strong>, <strong>Discord bots</strong>, and <strong>web tools that solve real problems</strong>. My paycheck calculator started as a question about my own pay stub and ended as an installable app verified to the penny against the real thing. That's how I like to work: find the problem, do the math, ship it.</p>
+  <p>I'm always interested in interesting builds — especially around game servers, community tooling, and automation. If you've got one, let's talk.</p>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <div class="contactbox rv">
+    <div class="kicker">Contact</div>
+    <h2>Let's build something.</h2>
+    <p>Everything I make lives on GitHub. Open an issue on any repo, or just come see what I'm working on.</p>
+    <a class="btn pri" href="https://github.com/hackerzz69" target="_blank" rel="noopener">Find me on GitHub</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  © 2026 hackerzz69 · Built with HTML/CSS/JS · Hosted free on GitHub Pages
+</div></footer>
+
+<script>
+"use strict";
+// reveal on scroll
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+}), {threshold:.12});
+document.querySelectorAll(".rv").forEach(el => io.observe(el));
+// hero elements animate in on load
+document.querySelectorAll(".hero .eyebrow, .hero h1, .hero .lede, .hero .cta, .hero .stats").forEach((el,i) => {
+  el.classList.add("rv");
+  el.style.transitionDelay = (i * 70) + "ms";
+  io.observe(el);
+});
+</script>
+</body>
+</html>
